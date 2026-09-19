@@ -1,1 +1,144 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>DESTE-PARTY CARD GAME — Yasal Bilgiler / Legal</title><link rel="stylesheet" href="style.css"></head><body><main><p class="brand">ABDI</p><h1>Oyun hakkında.<br>Hakların hakkında.</h1><p>Gizlilik ve kullanım bilgileri / Privacy and terms of use.</p><nav aria-label="Yasal belgeler"><a href="privacy.html">Gizlilik Politikası / Privacy Policy</a><a href="terms.html">Kullanım Koşulları / Terms of Use</a></nav><p class="meta">18+ · Sosyal kart oyunu / Social card game</p></main></body></html>
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DESTE - Party Card Game — Yasal Bilgiler</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .language-picker {
+      margin-bottom: 1.5rem;
+    }
+
+    .language-picker label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .language-picker select {
+      min-width: 180px;
+      padding: 0.55rem 0.75rem;
+      border: 1px solid currentColor;
+      border-radius: 8px;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="language-picker">
+      <label for="language">Dil / Language / Idioma / Sprache / Język</label>
+      <select id="language" aria-label="Language selection">
+        <option value="tr">Türkçe</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="pl">Polski</option>
+      </select>
+    </div>
+
+    <p class="brand">DESTE</p>
+    <h1 id="heading">Oyun hakkında.<br>Hakların hakkında.</h1>
+    <p id="description">Gizlilik politikası ve kullanım koşulları.</p>
+    <nav id="legal-nav" aria-label="Yasal belgeler">
+      <a id="privacy-link" href="privacy.html#tr">Gizlilik Politikası</a>
+      <a id="terms-link" href="terms.html#tr">Kullanım Koşulları</a>
+    </nav>
+    <p id="meta" class="meta">18+ · Sosyal kart oyunu</p>
+  </main>
+
+  <script>
+    const translations = {
+      tr: {
+        title: "DESTE - Party Card Game — Yasal Bilgiler",
+        heading: "Oyun hakkında.<br>Hakların hakkında.",
+        description: "Gizlilik politikası ve kullanım koşulları.",
+        privacy: "Gizlilik Politikası",
+        terms: "Kullanım Koşulları",
+        meta: "18+ · Sosyal kart oyunu",
+        navLabel: "Yasal belgeler"
+      },
+      en: {
+        title: "DESTE - Party Card Game — Legal Information",
+        heading: "About the game.<br>About your rights.",
+        description: "Privacy policy and terms of use.",
+        privacy: "Privacy Policy",
+        terms: "Terms of Use",
+        meta: "18+ · Social card game",
+        navLabel: "Legal documents"
+      },
+      es: {
+        title: "DESTE - Party Card Game — Información legal",
+        heading: "Sobre el juego.<br>Sobre tus derechos.",
+        description: "Política de privacidad y condiciones de uso.",
+        privacy: "Política de privacidad",
+        terms: "Condiciones de uso",
+        meta: "18+ · Juego social de cartas",
+        navLabel: "Documentos legales"
+      },
+      de: {
+        title: "DESTE - Party Card Game — Rechtliche Informationen",
+        heading: "Über das Spiel.<br>Über deine Rechte.",
+        description: "Datenschutzerklärung und Nutzungsbedingungen.",
+        privacy: "Datenschutzerklärung",
+        terms: "Nutzungsbedingungen",
+        meta: "18+ · Soziales Kartenspiel",
+        navLabel: "Rechtliche Dokumente"
+      },
+      pl: {
+        title: "DESTE - Party Card Game — Informacje prawne",
+        heading: "O grze.<br>O Twoich prawach.",
+        description: "Polityka prywatności i warunki korzystania.",
+        privacy: "Polityka prywatności",
+        terms: "Warunki korzystania",
+        meta: "18+ · Towarzyska gra karciana",
+        navLabel: "Dokumenty prawne"
+      }
+    };
+
+    const languageSelect = document.querySelector("#language");
+    const heading = document.querySelector("#heading");
+    const description = document.querySelector("#description");
+    const privacyLink = document.querySelector("#privacy-link");
+    const termsLink = document.querySelector("#terms-link");
+    const legalNav = document.querySelector("#legal-nav");
+    const meta = document.querySelector("#meta");
+    const supportedLanguages = Object.keys(translations);
+
+    function setLanguage(language, updateHash = true) {
+      const selected = supportedLanguages.includes(language) ? language : "tr";
+      const text = translations[selected];
+
+      document.documentElement.lang = selected;
+      document.title = text.title;
+      languageSelect.value = selected;
+      heading.innerHTML = text.heading;
+      description.textContent = text.description;
+      privacyLink.textContent = text.privacy;
+      privacyLink.href = `privacy.html#${selected}`;
+      termsLink.textContent = text.terms;
+      termsLink.href = `terms.html#${selected}`;
+      legalNav.setAttribute("aria-label", text.navLabel);
+      meta.textContent = text.meta;
+
+      if (updateHash) {
+        history.replaceState(null, "", `#${selected}`);
+      }
+    }
+
+    languageSelect.addEventListener("change", () => setLanguage(languageSelect.value));
+
+    const hashLanguage = window.location.hash.slice(1).toLowerCase();
+    const browserLanguage = navigator.language.slice(0, 2).toLowerCase();
+    setLanguage(
+      supportedLanguages.includes(hashLanguage)
+        ? hashLanguage
+        : (supportedLanguages.includes(browserLanguage) ? browserLanguage : "tr"),
+      false
+    );
+  </script>
+</body>
+</html>
