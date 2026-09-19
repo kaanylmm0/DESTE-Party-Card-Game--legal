@@ -11,7 +11,6 @@
     footer{border-top:1px solid #8886;padding-top:18px;margin-top:36px}
     h1,h2{line-height:1.25} h2{margin-top:1.5em}
     .brand{font-size:1.15rem;font-weight:700}
-    .notice{padding:12px 14px;border-left:4px solid #e6a700;background:#e6a70018}
     .label{display:block;margin-bottom:8px;font-weight:600}
     .switcher{display:flex;flex-wrap:wrap;gap:8px}
     button{border:1px solid currentColor;border-radius:999px;padding:7px 13px;background:transparent;color:inherit;cursor:pointer;font:inherit}
@@ -138,7 +137,7 @@
       const policy = policies[lang];
       document.documentElement.lang = lang;
       content.setAttribute("lang", lang);
-      content.innerHTML = `<p class="notice">${policy.notice}</p><h1>${policy.heading}</h1><p>${policy.updated}</p>` +
+      content.innerHTML = `<h1>${policy.heading}</h1><p>${policy.updated}</p>` +
         policy.sections.map(([title, body]) => `<section><h2>${title}</h2><p>${body}</p></section>`).join("");
       buttons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.lang === lang)));
       if (updateHash) history.replaceState(null, "", `#${lang}`);
