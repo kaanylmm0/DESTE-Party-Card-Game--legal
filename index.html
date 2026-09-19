@@ -47,6 +47,10 @@
       <a id="privacy-link" href="privacy.html#tr">Gizlilik Politikası</a>
       <a id="terms-link" href="terms.html#tr">Kullanım Koşulları</a>
     </nav>
+    <p id="support">
+      <span id="support-label">Destek:</span>
+      <a href="mailto:studiolabss0@gmail.com">studiolabss0@gmail.com</a>
+    </p>
     <p id="meta" class="meta">18+ · Sosyal kart oyunu</p>
   </main>
 
@@ -58,6 +62,7 @@
         description: "Gizlilik politikası ve kullanım koşulları.",
         privacy: "Gizlilik Politikası",
         terms: "Kullanım Koşulları",
+        support: "Destek:",
         meta: "18+ · Sosyal kart oyunu",
         navLabel: "Yasal belgeler"
       },
@@ -67,6 +72,7 @@
         description: "Privacy policy and terms of use.",
         privacy: "Privacy Policy",
         terms: "Terms of Use",
+        support: "Support:",
         meta: "18+ · Social card game",
         navLabel: "Legal documents"
       },
@@ -76,6 +82,7 @@
         description: "Política de privacidad y condiciones de uso.",
         privacy: "Política de privacidad",
         terms: "Condiciones de uso",
+        support: "Soporte:",
         meta: "18+ · Juego social de cartas",
         navLabel: "Documentos legales"
       },
@@ -85,6 +92,7 @@
         description: "Datenschutzerklärung und Nutzungsbedingungen.",
         privacy: "Datenschutzerklärung",
         terms: "Nutzungsbedingungen",
+        support: "Support:",
         meta: "18+ · Soziales Kartenspiel",
         navLabel: "Rechtliche Dokumente"
       },
@@ -94,6 +102,7 @@
         description: "Polityka prywatności i warunki korzystania.",
         privacy: "Polityka prywatności",
         terms: "Warunki korzystania",
+        support: "Pomoc:",
         meta: "18+ · Towarzyska gra karciana",
         navLabel: "Dokumenty prawne"
       }
@@ -104,6 +113,7 @@
     const description = document.querySelector("#description");
     const privacyLink = document.querySelector("#privacy-link");
     const termsLink = document.querySelector("#terms-link");
+    const supportLabel = document.querySelector("#support-label");
     const legalNav = document.querySelector("#legal-nav");
     const meta = document.querySelector("#meta");
     const supportedLanguages = Object.keys(translations);
@@ -121,6 +131,7 @@
       privacyLink.href = `privacy.html#${selected}`;
       termsLink.textContent = text.terms;
       termsLink.href = `terms.html#${selected}`;
+      supportLabel.textContent = text.support;
       legalNav.setAttribute("aria-label", text.navLabel);
       meta.textContent = text.meta;
 
